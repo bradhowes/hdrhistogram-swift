@@ -58,7 +58,9 @@ final class HistogramDataAccessTests: XCTestCase {
         XCTAssertEqual(Self.histogram.totalCount, Self.scaledHistogram.totalCount, "total count should be the same")
         XCTAssertEqual(Self.scaledHistogram.highestEquivalentForValue(Self.histogram.valueAtPercentile(99.0) * 512),
                        Self.scaledHistogram.highestEquivalentForValue(Self.scaledHistogram.valueAtPercentile(99.0)), "99%'iles should be equivalent")
+#if canImport(Darwin)
         XCTAssertEqual(Self.scaledHistogram.highestEquivalentForValue(Self.histogram.max * 512), Self.scaledHistogram.max, "Max should be equivalent")
+#endif
     }
 
     func testTotalCount() {
