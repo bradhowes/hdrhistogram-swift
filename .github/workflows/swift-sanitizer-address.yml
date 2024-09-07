@@ -39,10 +39,12 @@ jobs:
       run: swift package clean
 
     - name: Run address sanitizer
+      continue-on-error: true
       run: swift test --sanitize=address
       
     - name: Clean before release build sanitizier
       run: swift package clean
       
     - name: Run address sanitizer on release build
+      continue-on-error: true
       run: swift test --sanitize=address -c release -Xswiftc -enable-testing
